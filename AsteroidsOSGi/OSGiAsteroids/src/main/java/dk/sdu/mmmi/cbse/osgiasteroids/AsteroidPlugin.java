@@ -15,12 +15,13 @@ import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
  */
 public class AsteroidPlugin implements IGamePluginService {
 
-
     @Override
     public void start(GameData gameData, World world) {
-        // Add entities to the world
-        Entity asteroid = createAsteroid(gameData);
-        world.addEntity(asteroid);
+        // Add 10 asteroid entities to the world
+        for (int i = 0; i < 10; i++) {
+            Entity asteroid = createAsteroid(gameData);
+            world.addEntity(asteroid);
+        }
     }
 
     @Override
@@ -35,12 +36,12 @@ public class AsteroidPlugin implements IGamePluginService {
         Entity asteroid = new Asteroid();
         float radians = (float) Math.random() * 2 * 3.1415f;
         float speed = (float) Math.random() * 10f + 20f;
-        
-        asteroid.setRadius(20);
+
+        asteroid.setRadius(12);
         asteroid.add(new MovingPart(0, speed, speed, 0));
-        asteroid.add(new PositionPart(30, 30, radians));
+        asteroid.add(new PositionPart((float) (Math.random() * gameData.getDisplayWidth()), (float) (Math.random() * gameData.getDisplayHeight()), radians));
         asteroid.add(new LifePart(3));
-        
+
         return asteroid;
     }
 }
