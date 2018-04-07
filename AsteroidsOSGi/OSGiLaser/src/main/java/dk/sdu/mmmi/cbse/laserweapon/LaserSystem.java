@@ -12,7 +12,6 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.TimerPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
-import org.openide.util.lookup.ServiceProvider;
 
 public class LaserSystem implements IEntityProcessingService, BulletSPI {
 
@@ -42,7 +41,6 @@ public class LaserSystem implements IEntityProcessingService, BulletSPI {
     @Override
     public Entity createBullet(Entity shooter, GameData gameData) {
         PositionPart shooterPos = shooter.getPart(PositionPart.class);
-        MovingPart shooterMovingPart = shooter.getPart(MovingPart.class);
 
         float x = shooterPos.getX();
         float y = shooterPos.getY();

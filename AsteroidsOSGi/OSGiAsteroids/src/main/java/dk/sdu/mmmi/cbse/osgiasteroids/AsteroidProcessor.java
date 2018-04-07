@@ -24,13 +24,13 @@ public class AsteroidProcessor implements IEntityProcessingService {
             LifePart lifePart = asteroid.getPart(LifePart.class);
             
             
-            int numPoints = 12;
+            int numPoints = 6;
             float speed = (float) Math.random() * 10f + 20f;
             if (lifePart.getLife() == 1) {
-                numPoints = 8;
+                numPoints = 3;
                 speed = (float) Math.random() * 30f + 70f;
             } else if (lifePart.getLife()  == 2) {
-                numPoints = 10;
+                numPoints = 4;
                 speed = (float) Math.random() * 10f + 50f;
             }
             movingPart.setSpeed(speed);

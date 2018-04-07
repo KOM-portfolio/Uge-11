@@ -1,0 +1,2 @@
+Bundle-SymbolicName: OSGiCollision
+Bundle-ActivationPolicy: lazy

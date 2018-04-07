@@ -40,11 +40,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>OSGiAsteroids</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>OSGiAsteroidSplitter</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -66,6 +61,16 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>OSGiUpdater</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>OSGiCollision</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>OSGiAsteroids</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

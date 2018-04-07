@@ -13,6 +13,7 @@ import static dk.sdu.mmmi.cbse.common.data.GameKeys.RIGHT;
 import static dk.sdu.mmmi.cbse.common.data.GameKeys.SPACE;
 import static dk.sdu.mmmi.cbse.common.data.GameKeys.UP;
 import dk.sdu.mmmi.cbse.common.data.World;
+import dk.sdu.mmmi.cbse.common.data.entityparts.LifePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
@@ -30,6 +31,7 @@ public class PlayerProcessor implements IEntityProcessingService {
     @Override
     public void process(GameData gameData, World world) {
         for (Entity player : world.getEntities(Player.class)) {
+            LifePart lifePart = player.getPart(LifePart.class);
             PositionPart positionPart = player.getPart(PositionPart.class);
             MovingPart movingPart = player.getPart(MovingPart.class);
 
@@ -37,7 +39,7 @@ public class PlayerProcessor implements IEntityProcessingService {
             movingPart.setRight(gameData.getKeys().isDown(RIGHT));
             movingPart.setUp(gameData.getKeys().isDown(UP));
             
-            //Shoot
+            // Shoot
             weaponCD(gameData);
             if (gameData.getKeys().isDown(SPACE) && canShoot) {
                 if (bulletService != null) {
@@ -47,10 +49,13 @@ public class PlayerProcessor implements IEntityProcessingService {
                     CD = 0.3f;
                 }
             }
+            if(lifePart.isDead()){
+                world.removeEntity(player);
+            }
             
             movingPart.process(gameData, player);
             positionPart.process(gameData, player);
-
+            lifePart.process(gameData, player);
             updateShape(player);
         }
     }

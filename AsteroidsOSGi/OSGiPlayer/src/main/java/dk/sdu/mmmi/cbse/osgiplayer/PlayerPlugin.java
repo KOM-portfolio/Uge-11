@@ -40,8 +40,8 @@ public class PlayerPlugin implements IGamePluginService {
         float acceleration = 200;
         float maxSpeed = 300;
         float rotationSpeed = 5;
-        float x = (gameData.getDisplayWidth() / 2);
-        float y = (gameData.getDisplayHeight() / 2);
+        float x = (800 / 2);
+        float y = (600 / 2);
         float radians = 3.1415f / 2;
         playerShip.add(new LifePart(3));
         playerShip.setRadius(4);

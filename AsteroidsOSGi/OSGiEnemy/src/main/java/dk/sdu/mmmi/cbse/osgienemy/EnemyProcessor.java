@@ -4,6 +4,7 @@ import dk.sdu.mmmi.cbse.common.bullet.BulletSPI;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
+import dk.sdu.mmmi.cbse.common.data.entityparts.LifePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.enemy.Enemy;
@@ -13,28 +14,31 @@ public class EnemyProcessor implements IEntityProcessingService {
 
     private BulletSPI bulletService;
 
-
     @Override
     public void process(GameData gameData, World world) {
-
         for (Entity entity : world.getEntities(Enemy.class)) {
-
+            LifePart lifePart = entity.getPart(LifePart.class);
             PositionPart positionPart = entity.getPart(PositionPart.class);
             MovingPart movingPart = entity.getPart(MovingPart.class);
+            
             double random = Math.random();
             movingPart.setLeft(random < 0.2);
             movingPart.setRight(random > 0.3 && random < 0.5);
             movingPart.setUp(random > 0.7 && random < 0.9);
-            
+
+            // Shoot
             if (random > 0.98) {
                 Entity bullet = bulletService.createBullet(entity, gameData);
                 world.addEntity(bullet);
             }
-            
-            movingPart.process(gameData, entity);
-            positionPart.process(gameData, entity);            
-            updateShape(entity);
+            if (lifePart.isDead()) {
+                world.removeEntity(entity);
+            }
 
+            movingPart.process(gameData, entity);
+            positionPart.process(gameData, entity);
+            lifePart.process(gameData, entity);
+            updateShape(entity);
         }
     }
 
