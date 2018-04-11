@@ -41,7 +41,7 @@ public class PlayerProcessor implements IEntityProcessingService {
             
             // Shoot
             weaponCD(gameData);
-            if (gameData.getKeys().isDown(SPACE) && canShoot) {
+            if (gameData.getKeys().isDown(SPACE) && canShoot && this.bulletService != null) {
                 if (bulletService != null) {
                     Entity bullet = bulletService.createBullet(player, gameData);
                     world.addEntity(bullet);

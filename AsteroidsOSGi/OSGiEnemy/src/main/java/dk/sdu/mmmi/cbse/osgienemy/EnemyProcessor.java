@@ -27,7 +27,7 @@ public class EnemyProcessor implements IEntityProcessingService {
             movingPart.setUp(random > 0.7 && random < 0.9);
 
             // Shoot
-            if (random > 0.98) {
+            if (random > 0.98 && this.bulletService != null) {
                 Entity bullet = bulletService.createBullet(entity, gameData);
                 world.addEntity(bullet);
             }

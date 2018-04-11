@@ -24,7 +24,7 @@ public class Updater implements BundleActivator {
 
     public void start(BundleContext bundleContext) throws Exception {
 
-        Path MODULES_DIRECTORY = Paths.get("/Users/Agger/OSGiModules");
+        Path MODULES_DIRECTORY = Paths.get("/Users/chris/OSGiModules");
 
         this.bundleContext = bundleContext;
 
