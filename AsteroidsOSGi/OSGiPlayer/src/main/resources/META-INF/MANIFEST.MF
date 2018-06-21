@@ -1,4 +1,6 @@
 Bundle-SymbolicName: OSGiAsteroids
+Bundle-Name: OSGiAsteroids
+Bundle-Version: 1.0.0
 Bundle-ActivationPolicy: lazy
 Service-Component: META-INF/entityprocessor.xml, META-INF/gameplugin.xml
 
